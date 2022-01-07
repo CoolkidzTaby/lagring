@@ -37,7 +37,7 @@ SELECT * FROM Workload
 
 CREATE VIEW EnsambleSeats AS SELECT ensamble.lesson_id, lesson."date", ensamble.genre, 
 CASE WHEN max_attendence = attendence THEN 'Full booked'
-WHEN max_attendence > attendence AND CAST(max_attendence AS int) - CAST(attendence AS int) <= 2 THEN '1-2 seats left'
+WHEN CAST(max_attendence AS int) - CAST(attendence AS int) <= 2 THEN '1-2 seats left'
 ELSE 'More than 2 seats left'
 END AS Seats
 FROM lesson FULL JOIN ensamble ON ensamble.lesson_id=lesson.lesson_id 
